@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './users_search_args.dart';
 import '../../controllers/users_search_controller.dart';
 
+import '../user_profile/user_profile_args.dart';
+
 class UsersSearchPage extends StatefulWidget {
   const UsersSearchPage({Key? key}) : super(key: key);
 
@@ -38,10 +40,24 @@ class UsersSearchPageState extends State<UsersSearchPage> {
           return ListView.builder(
             itemCount: controller.searchResults.value.length,
             itemBuilder: (BuildContext context, int index) {
+              var githubUser = controller.searchResults.value[index];
               return ListTile(
-                title: Text(controller.searchResults.value[index].username),
+                title: Column(
+                  children: [
+                    Image.network(
+                      githubUser.avatarUrl,
+                      fit: BoxFit.cover,
+                    ),
+                    Text(githubUser.username),
+                  ],
+                ),
                 subtitle:
                     Text('Id: ${controller.searchResults.value[index].id}'),
+                onTap: () {
+                  Navigator.of(context).pushNamed('/userProfile',
+                      arguments:
+                          UserProfileArgs(username: githubUser.username));
+                },
               );
             },
           );
