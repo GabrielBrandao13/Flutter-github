@@ -36,7 +36,7 @@ class UsersSearchPageState extends State<UsersSearchPage> {
         animation: controller.searchResults,
         builder: (BuildContext context, Widget? child) {
           return ListView.builder(
-            itemCount: 10,
+            itemCount: controller.searchResults.value.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(controller.searchResults.value[index].username),
