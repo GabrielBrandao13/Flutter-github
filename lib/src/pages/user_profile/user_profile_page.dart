@@ -38,6 +38,26 @@ class UserProfilePageState extends State<UserProfilePage> {
                   user.username,
                   style: const TextStyle(fontSize: 20),
                 ),
+                Text('Id: ${user.id}'),
+                Text('Repositórios públicos: ${user.publicRepos}'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Seguidores: ${user.followers}'),
+                    Container(width: 4),
+                    Text('Seguindo: ${user.following}'),
+                  ],
+                ),
+                Container(height: 5),
+                Text(
+                  user.bio ?? 'Sem bio inserida',
+                  textAlign: TextAlign.center,
+                ),
+                Container(height: 5),
+                Text(
+                    'Criado em ${user.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.day}'),
+                Text(
+                    'Atualizado em ${user.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.day}'),
               ],
             ),
           );
