@@ -3,6 +3,8 @@ import './user_profile_args.dart';
 
 import '../../controllers/user_profile_controller.dart';
 
+import '../user_followers/user_followers_args.dart';
+
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
 
@@ -43,7 +45,13 @@ class UserProfilePageState extends State<UserProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Seguidores: ${user.followers}'),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/userFollowers',
+                            arguments: UserFollowersArgs(username: username));
+                      },
+                      child: Text('Seguidores: ${user.followers}'),
+                    ),
                     Container(width: 4),
                     Text('Seguindo: ${user.following}'),
                   ],
@@ -55,9 +63,9 @@ class UserProfilePageState extends State<UserProfilePage> {
                 ),
                 Container(height: 5),
                 Text(
-                    'Criado em ${user.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.day}'),
+                    'Criado em ${user.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.year}'),
                 Text(
-                    'Atualizado em ${user.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.day}'),
+                    'Atualizado em ${user.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.year}'),
               ],
             ),
           );
