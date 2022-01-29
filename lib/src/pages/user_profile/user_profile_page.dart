@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_github/src/pages/users_list/users_list_page.dart';
 import './user_profile_args.dart';
 
 import '../../controllers/user_profile_controller.dart';
 
-import '../user_followers/user_followers_args.dart';
-import '../user_following/user_following_args.dart';
+import '../users_list/users_list_args.dart';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
@@ -48,16 +48,26 @@ class UserProfilePageState extends State<UserProfilePage> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/userFollowers',
-                            arguments: UserFollowersArgs(username: username));
+                        Navigator.of(context).pushNamed(
+                          '/usersList',
+                          arguments: UsersListArgs(
+                            title: 'Seguidores',
+                            sourceRoute: 'users/$username/followers',
+                          ),
+                        );
                       },
                       child: Text('Seguidores: ${user.followers}'),
                     ),
                     Container(width: 4),
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushNamed('/userFollowing',
-                            arguments: UserFollowingArgs(username: username));
+                        Navigator.of(context).pushNamed(
+                          '/usersList',
+                          arguments: UsersListArgs(
+                            title: 'Seguindo',
+                            sourceRoute: 'users/$username/following',
+                          ),
+                        );
                       },
                       child: Text('Seguindo: ${user.following}'),
                     ),
