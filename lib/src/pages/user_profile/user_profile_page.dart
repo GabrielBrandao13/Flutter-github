@@ -4,6 +4,7 @@ import './user_profile_args.dart';
 import '../../controllers/user_profile_controller.dart';
 
 import '../user_followers/user_followers_args.dart';
+import '../user_following/user_following_args.dart';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
@@ -53,7 +54,13 @@ class UserProfilePageState extends State<UserProfilePage> {
                       child: Text('Seguidores: ${user.followers}'),
                     ),
                     Container(width: 4),
-                    Text('Seguindo: ${user.following}'),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/userFollowing',
+                            arguments: UserFollowingArgs(username: username));
+                      },
+                      child: Text('Seguindo: ${user.following}'),
+                    ),
                   ],
                 ),
                 Container(height: 5),

@@ -3,6 +3,7 @@ import './src/pages/home_page.dart';
 import './src/pages/users_search/users_search_page.dart';
 import './src/pages/user_profile/user_profile_page.dart';
 import './src/pages/user_followers/user_followers_page.dart';
+import './src/pages/user_following/user_following_page.dart';
 
 void main() {
   runApp(const App());
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
         '/search': (BuildContext context) => const UsersSearchPage(),
         '/userProfile': (BuildContext context) => const UserProfilePage(),
         '/userFollowers': (BuildContext context) => const UserFollowersPage(),
+        '/userFollowing': (BuildContext context) => const UserFollowingPage(),
       },
     );
   }

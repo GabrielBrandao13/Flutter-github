@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_github/src/controllers/user_followers_controller.dart';
-import 'package:projeto_github/src/pages/user_followers/user_followers_args.dart';
+import 'package:projeto_github/src/controllers/user_following_controller.dart';
 
 import '../user_profile/user_profile_args.dart';
+
+import './user_following_args.dart';
 
 class UserFollowingPage extends StatefulWidget {
   const UserFollowingPage({Key? key}) : super(key: key);
@@ -12,19 +13,19 @@ class UserFollowingPage extends StatefulWidget {
 }
 
 class UserFollowersState extends State<UserFollowingPage> {
-  final controller = UserFollowersController();
+  final controller = UserFollowingController();
 
   @override
   Widget build(BuildContext context) {
     final args =
-        ModalRoute.of(context)!.settings.arguments as UserFollowersArgs;
+        ModalRoute.of(context)!.settings.arguments as UserFollowingArgs;
     final username = args.username;
 
     controller.start(username);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Seguidores'),
+        title: const Text('Seguindo'),
       ),
       body: AnimatedBuilder(
         animation: controller.followers,
