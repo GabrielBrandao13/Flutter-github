@@ -5,6 +5,7 @@ import './user_profile_args.dart';
 import '../../controllers/user_profile_controller.dart';
 
 import '../users_list/users_list_args.dart';
+import '../user_repos/user_repos_args.dart';
 
 class UserProfilePage extends StatefulWidget {
   const UserProfilePage({Key? key}) : super(key: key);
@@ -42,7 +43,11 @@ class UserProfilePageState extends State<UserProfilePage> {
                   style: const TextStyle(fontSize: 20),
                 ),
                 Text('Id: ${user.id}'),
-                Text('Repositórios públicos: ${user.publicRepos}'),
+                TextButton(
+                  child: Text('Repositórios públicos: ${user.publicRepos}'),
+                  onPressed: () => Navigator.of(context).pushNamed('/userRepos',
+                      arguments: UserReposArgs(username: username)),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
