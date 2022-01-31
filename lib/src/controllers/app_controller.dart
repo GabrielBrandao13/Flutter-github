@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class AppController extends ChangeNotifier {
-  bool isDarkTheme = false;
+  bool isDarkTheme = true;
 
   void switchTheme() {
     isDarkTheme = !isDarkTheme;

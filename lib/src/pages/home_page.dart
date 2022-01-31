@@ -49,7 +49,7 @@ class HomePageState extends State<HomePage> {
             ElevatedButton.icon(
               onPressed: search,
               icon: const Icon(Icons.search),
-              label: Text('Pesquisar'),
+              label: const Text('Pesquisar'),
             ),
           ],
         ),
@@ -63,7 +63,7 @@ class HomePageState extends State<HomePage> {
                   DrawerHeader(
                     child: Center(
                       child: const Text(
-                        'App github',
+                        'App Github',
                         style: TextStyle(fontSize: 20),
                       ),
                     ),

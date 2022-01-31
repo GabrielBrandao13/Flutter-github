@@ -21,7 +21,8 @@ class App extends StatelessWidget {
         return MaterialApp(
           title: 'App github',
           theme: ThemeData(
-            primarySwatch: Colors.red,
+            primarySwatch:
+                AppController.instance.isDarkTheme ? Colors.blue : Colors.red,
             brightness: AppController.instance.isDarkTheme
                 ? Brightness.dark
                 : Brightness.light,
