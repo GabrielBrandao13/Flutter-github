@@ -20,24 +20,25 @@ class _UserReposPageState extends State<UserReposPage> {
 
     controller.setup(username);
 
-    return AnimatedBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Repositórios de $username'),
+      ),
+      body: AnimatedBuilder(
         animation: controller.repos,
         builder: (context, child) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Repositórios de $username'),
-            ),
-            body: ListView.builder(
-              itemCount: controller.repos.value.length,
-              itemBuilder: (context, index) {
-                var repo = controller.repos.value[index];
-                return ListTile(
-                  title: Text(repo.name),
-                  subtitle: Text(repo.description),
-                );
-              },
-            ),
+          return ListView.builder(
+            itemCount: controller.repos.value.length,
+            itemBuilder: (context, index) {
+              var repo = controller.repos.value[index];
+              return ListTile(
+                title: Text(repo.name),
+                subtitle: Text(repo.description),
+              );
+            },
           );
-        });
+        },
+      ),
+    );
   }
 }
