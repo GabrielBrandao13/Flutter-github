@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../controllers/home_controller.dart';
+import '../controllers/app_controller.dart';
 import './users_search/users_search_args.dart';
 
 class HomePage extends StatefulWidget {
@@ -38,7 +39,7 @@ class HomePageState extends State<HomePage> {
           children: <Widget>[
             TextField(
               controller: controller.searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Nome de usuário Github',
               ),
@@ -47,12 +48,38 @@ class HomePageState extends State<HomePage> {
             Container(height: 15),
             ElevatedButton.icon(
               onPressed: search,
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.search),
               label: Text('Pesquisar'),
             ),
           ],
         ),
       ),
+      drawer: AnimatedBuilder(
+          animation: AppController.instance,
+          builder: (context, child) {
+            return Drawer(
+              child: Column(
+                children: [
+                  DrawerHeader(
+                    child: Center(
+                      child: const Text(
+                        'App github',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    title: const Text('Tema escuro'),
+                    leading: Switch(
+                      value: AppController.instance.isDarkTheme,
+                      onChanged: (bool value) =>
+                          AppController.instance.switchTheme(),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 }
