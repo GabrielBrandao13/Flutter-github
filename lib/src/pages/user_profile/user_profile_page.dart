@@ -34,61 +34,64 @@ class UserProfilePageState extends State<UserProfilePage> {
           return SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.network(user.avatarUrl),
-                Text(
-                  user.username,
-                  style: const TextStyle(fontSize: 20),
-                ),
-                Text('Id: ${user.id}'),
-                TextButton(
-                  child: Text('Repositórios públicos: ${user.publicRepos}'),
-                  onPressed: () => Navigator.of(context).pushNamed('/userRepos',
-                      arguments: UserReposArgs(username: username)),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(
-                          '/usersList',
-                          arguments: UsersListArgs(
-                            title: 'Seguidores',
-                            sourceRoute: 'users/$username/followers',
-                          ),
-                        );
-                      },
-                      child: Text('Seguidores: ${user.followers}'),
-                    ),
-                    Container(width: 4),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pushNamed(
-                          '/usersList',
-                          arguments: UsersListArgs(
-                            title: 'Seguindo',
-                            sourceRoute: 'users/$username/following',
-                          ),
-                        );
-                      },
-                      child: Text('Seguindo: ${user.following}'),
-                    ),
-                  ],
-                ),
-                Container(height: 5),
-                Text(
-                  user.bio ?? 'Sem bio inserida',
-                  textAlign: TextAlign.center,
-                ),
-                Container(height: 5),
-                Text(
-                    'Criado em ${user.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.year}'),
-                Text(
-                    'Atualizado em ${user.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.year}'),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.network(user.avatarUrl),
+                  Text(
+                    user.username,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text('Id: ${user.id}'),
+                  TextButton(
+                    child: Text('Repositórios públicos: ${user.publicRepos}'),
+                    onPressed: () => Navigator.of(context).pushNamed(
+                        '/userRepos',
+                        arguments: UserReposArgs(username: username)),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            '/usersList',
+                            arguments: UsersListArgs(
+                              title: 'Seguidores',
+                              sourceRoute: 'users/$username/followers',
+                            ),
+                          );
+                        },
+                        child: Text('Seguidores: ${user.followers}'),
+                      ),
+                      Container(width: 4),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(
+                            '/usersList',
+                            arguments: UsersListArgs(
+                              title: 'Seguindo',
+                              sourceRoute: 'users/$username/following',
+                            ),
+                          );
+                        },
+                        child: Text('Seguindo: ${user.following}'),
+                      ),
+                    ],
+                  ),
+                  Container(height: 5),
+                  Text(
+                    user.bio ?? 'Sem bio inserida',
+                    textAlign: TextAlign.center,
+                  ),
+                  Container(height: 5),
+                  Text(
+                      'Criado em ${user.createdAt!.day}/${user.createdAt!.month}/${user.createdAt!.year}'),
+                  Text(
+                      'Atualizado em ${user.updatedAt!.day}/${user.updatedAt!.month}/${user.updatedAt!.year}'),
+                ],
+              ),
             ),
           );
         },
