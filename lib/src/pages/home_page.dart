@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../controllers/home_controller.dart';
 import '../controllers/app_controller.dart';
@@ -22,15 +23,17 @@ class HomePageState extends State<HomePage> {
   }
 
   void search() {
-    Navigator.of(context).pushNamed('/search',
-        arguments: UsersSearchArgs(search: searchTextController.text));
+    if (searchTextController.text.trim().isNotEmpty) {
+      Navigator.of(context).pushNamed('/search',
+          arguments: UsersSearchArgs(search: searchTextController.text));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('App github'),
+        title: const Text('App github'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -44,6 +47,7 @@ class HomePageState extends State<HomePage> {
                 labelText: 'Nome de usuário Github',
               ),
               onSubmitted: (String text) => search(),
+              autofocus: true,
             ),
             Container(height: 15),
             ElevatedButton.icon(
@@ -60,9 +64,9 @@ class HomePageState extends State<HomePage> {
             return Drawer(
               child: Column(
                 children: [
-                  DrawerHeader(
+                  const DrawerHeader(
                     child: Center(
-                      child: const Text(
+                      child: Text(
                         'App Github',
                         style: TextStyle(fontSize: 20),
                       ),
