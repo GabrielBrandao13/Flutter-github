@@ -33,7 +33,18 @@ class _UserReposPageState extends State<UserReposPage> {
               var repo = controller.repos.value[index];
               return ListTile(
                 title: Text(repo.name),
-                subtitle: Text(repo.description),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(repo.description),
+                    Row(
+                      children: repo.topics
+                          .map((topic) => Text('#$topic ',
+                              style: const TextStyle(color: Colors.blue)))
+                          .toList(),
+                    ),
+                  ],
+                ),
               );
             },
           );
