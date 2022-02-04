@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_github/src/components/load_screen.dart';
 import 'package:projeto_github/src/pages/users_list/users_list_page.dart';
 import './user_profile_args.dart';
 
@@ -31,6 +32,9 @@ class UserProfilePageState extends State<UserProfilePage> {
         animation: controller.userInfo,
         builder: (BuildContext context, Widget? child) {
           var user = controller.userInfo.value;
+          if (user.username.isEmpty) {
+            return const LoadScreen();
+          }
           return SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,

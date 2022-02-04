@@ -5,6 +5,8 @@ import '../../controllers/users_search_controller.dart';
 
 import '../user_profile/user_profile_args.dart';
 
+import '../../components/load_screen.dart';
+
 class UsersSearchPage extends StatefulWidget {
   const UsersSearchPage({Key? key}) : super(key: key);
 
@@ -37,6 +39,9 @@ class UsersSearchPageState extends State<UsersSearchPage> {
       body: AnimatedBuilder(
         animation: controller.searchResults,
         builder: (BuildContext context, Widget? child) {
+          if (controller.searchResults.value.isEmpty) {
+            return const LoadScreen();
+          }
           return ListView.builder(
             itemCount: controller.searchResults.value.length,
             itemBuilder: (BuildContext context, int index) {

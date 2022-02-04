@@ -4,6 +4,8 @@ import './user_repos_args.dart';
 
 import '../../controllers/user_repos_controller.dart';
 
+import '../../components/load_screen.dart';
+
 class UserReposPage extends StatefulWidget {
   const UserReposPage({Key? key}) : super(key: key);
   @override
@@ -27,6 +29,9 @@ class _UserReposPageState extends State<UserReposPage> {
       body: AnimatedBuilder(
         animation: controller.repos,
         builder: (context, child) {
+          if (controller.repos.value.isEmpty) {
+            return const LoadScreen();
+          }
           return ListView.builder(
             itemCount: controller.repos.value.length,
             itemBuilder: (context, index) {

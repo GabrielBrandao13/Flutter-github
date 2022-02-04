@@ -5,6 +5,8 @@ import './users_list_args.dart';
 
 import '../../controllers/user_list_controller.dart';
 
+import '../../components/load_screen.dart';
+
 class UserListPage extends StatefulWidget {
   const UserListPage({Key? key}) : super(key: key);
 
@@ -29,6 +31,9 @@ class UsersListState extends State<UserListPage> {
       body: AnimatedBuilder(
           animation: controller.users,
           builder: (context, widget) {
+            if (controller.users.value.isEmpty) {
+              return const LoadScreen();
+            }
             return ListView.builder(
               itemCount: controller.users.value.length,
               itemBuilder: (BuildContext context, int index) {
